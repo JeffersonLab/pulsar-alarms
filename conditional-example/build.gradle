@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.jlab'
+version '0.0.0'
+
+def pulsarVersion = '2.4.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.pulsar', name: 'pulsar-functions-api', version: pulsarVersion
+    compile group: 'org.apache.pulsar', name: 'pulsar-functions-local-runner', version: pulsarVersion
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+application {
+    mainClassName = 'org.jlab.ConditionalExample'
+}

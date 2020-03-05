@@ -8,10 +8,8 @@ import org.apache.pulsar.functions.api.Record;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Optional;
 
 public class ConditionalExample implements Function<String, String> {
@@ -31,11 +29,6 @@ public class ConditionalExample implements Function<String, String> {
 
         System.err.println("incoming topic: " + topicName);
 
-        //ByteBuffer previousBytes = context.getState("previous");
-
-        return input + "123!";
-    }
-    /*public String process(String input, Context context) throws Exception {
         ByteBuffer previousBytes = context.getState("previous");
         context.putState("previous", ByteBuffer.wrap(input.getBytes(StandardCharsets.UTF_8)));
 
@@ -44,12 +37,10 @@ public class ConditionalExample implements Function<String, String> {
             previous = new String(previousBytes.array(), StandardCharsets.UTF_8);
         }
 
-        String result =  input + previous;
-
-        System.err.println("Result: " + result);
+        String result =  "input topic: " + topicName + ", current value: " + input + ", previous value: " + previous;
 
         return result;
-    }*/
+    }
 
     public static void main(String[] args) throws Exception {
         String pulsarUrl = System.getenv("PULSAR_URL");
@@ -59,7 +50,7 @@ public class ConditionalExample implements Function<String, String> {
         }
 
         FunctionConfig functionConfig = new FunctionConfig();
-        functionConfig.setName("conditional-example2");
+        functionConfig.setName("conditional-example");
         functionConfig.setInputs(Arrays.asList("input1", "input2"));
         functionConfig.setRuntimeFlags("--state_storage_serviceurl bk://localhost:4181");
         functionConfig.setClassName(ConditionalExample.class.getName());

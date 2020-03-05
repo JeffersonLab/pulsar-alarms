@@ -1,4 +1,7 @@
 rootProject.name = 'pulsar-alarms'
 include 'epics-explicit'
 include 'conditional-example'
+include 'subscriber'
+include 'generator'
+include 'schema'
 

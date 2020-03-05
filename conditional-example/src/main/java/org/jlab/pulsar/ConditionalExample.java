@@ -1,4 +1,4 @@
-package org.jlab;
+package org.jlab.pulsar;
 
 import org.apache.pulsar.common.functions.FunctionConfig;
 import org.apache.pulsar.functions.LocalRunner;
